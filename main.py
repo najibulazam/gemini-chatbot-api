@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import google.generativeai as genai
 from dotenv import load_dotenv
+import asyncio
 import os
 
 # load dot-env
@@ -35,7 +36,8 @@ class PromptRequest(BaseModel):
 @app.post("/chat")
 async def chat(request: PromptRequest):
     try:
-        response = model.generate_content(request.prompt)
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(None, lambda: model.generate_content(request.prompt))
         return {"response": response.text}
     except Exception as e:
         return {"response": f"[ERROR] {str(e)}"}
