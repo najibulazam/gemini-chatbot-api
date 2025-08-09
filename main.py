@@ -24,7 +24,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",          # Dev
-        "https://gembot-chatbot-by-najib.netlify.app/"  # Production
+        "https://gembot-chatbot-by-najib.netlify.app"  # Production
     ],
     allow_credentials=True,
     allow_methods=["*"],
