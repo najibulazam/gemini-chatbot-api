@@ -22,8 +22,10 @@ app = FastAPI()
 # Allow frontend access (adjust origins as needed)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # dev
-    allow_origins="https://gembot-chatbot-by-najib.netlify.app/",   # production
+    allow_origins=[
+        "http://localhost:5173",          # Dev
+        "https://gembot-chatbot-by-najib.netlify.app/"  # Production
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
